@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jofb" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="resourceRef" value="true"/>
+		<property name="jndiName" value="DsJndi"/>
+	</bean>
+	
+	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="jofb"/>
+	</bean>
+	<bean name="loginDAO" class="com.rs.dao.LoginDAOImpl">
+		<property name="jt" ref="jt"/>
+	</bean>
+	<bean id="loginService" class="com.rs.service.LoginServiceImpl">
+		<property name="dao" ref="loginDAO"/>
+	</bean>
+</beans>
