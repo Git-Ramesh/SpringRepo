@@ -1,5 +1,6 @@
 package com.rs.bo;
 
+//BO Class
 public class LoginBO {
 	private String username;
 	private String password;
